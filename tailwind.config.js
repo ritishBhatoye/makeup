@@ -12,6 +12,8 @@ module.exports = {
       colors: {
         'orange-500': '#FF6B00',
         'orange-800': '#CC5500',
+        background: '#f2ede8',
+        text: '#6b5c4c',
       },
     },
   },
