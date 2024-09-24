@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, User, CheckCircle, Leaf, Info, DollarSign, Clock, X } from 'lucide-react';
+import { Calendar, User, CheckCircle, Leaf, Info, Mail, Phone } from 'lucide-react';
 import gsap from 'gsap';
+import { client } from '../../sanity/lib/client'
 
 const AppointmentForm = () => {
   const [step, setStep] = useState(1);
@@ -17,6 +18,8 @@ const AppointmentForm = () => {
     phoneNo: '',
     message: ''
   });
+  const [popupMessage, setPopupMessage] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     gsap.from(".gsap-header", {
@@ -47,12 +50,45 @@ const AppointmentForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (step < 3) {
       setStep(step + 1);
     } else {
-      console.log(formData);
+      try {
+        const appointmentData = {
+          _type: 'appointment',
+          service: formData.service,
+          date: new Date(formData.date).toISOString().split('T')[0],
+          time: formData.time,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phoneNo: formData.phoneNo,
+          message: formData.message
+        };
+
+        const result = await client.create(appointmentData);
+        console.log('Appointment created:', result);
+        setPopupMessage('Appointment booked successfully!');
+        setShowPopup(true);
+        // Reset form data
+        setFormData({
+          service: '',
+          date: '',
+          time: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          phoneNo: '',
+          message: ''
+        });
+        setStep(1);
+      } catch (error) {
+        console.error('Error submitting appointment:', error);
+        setPopupMessage('Error booking appointment. Please try again.');
+        setShowPopup(true);
+      }
     }
   };
 
@@ -66,8 +102,8 @@ const AppointmentForm = () => {
     <div className="bg-gradient-to-br from-[#f8f5f2] to-[#e8e0d8] min-h-screen flex flex-col items-center justify-center p-4 md:p-8 relative overflow-hidden">
       {[...Array(20)].map((_, i) => (
         <Leaf key={i} className={`gsap-leaf absolute text-[#8b6f4e] opacity-5 w-${8 + i * 2} h-${8 + i * 2}`} style={{
-          top: `${Math.random() * 100}%`,
-          left: `${Math.random() * 100}%`,
+          top: `[${Math.random() * 100}%]`,
+          left: `[${Math.random() * 100}%]`,
           transform: `rotate(${Math.random() * 360}deg)`
         }} />
       ))}
@@ -81,29 +117,8 @@ const AppointmentForm = () => {
         <h3 className="text-3xl font-bold text-[#8b6f4e] mb-6 flex items-center">
           <Info className="mr-3 w-8 h-8" /> Booking Policies
         </h3>
-        <div className="gsap-policy space-y-4">
-          <motion.div 
-            className="flex items-start space-x-4 bg-[#f0e6d9] p-4 rounded-lg"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <DollarSign className="w-6 h-6 text-[#8b6f4e] mt-1" />
-            <div>
-              <h4 className="font-semibold text-[#8b6f4e]">Deposit</h4>
-              <p>A 25% non-refundable deposit is required to secure your booking. This deposit ensures your slot is reserved and allows us to prepare for your appointment.</p>
-            </div>
-          </motion.div>
-          <motion.div 
-            className="flex items-start space-x-4 bg-[#f0e6d9] p-4 rounded-lg"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <Clock className="w-6 h-6 text-[#8b6f4e] mt-1" />
-            <div>
-              <h4 className="font-semibold text-[#8b6f4e]">Arrival Time</h4>
-              <p>Please arrive 10 minutes before your scheduled appointment time to ensure a relaxed check-in process.</p>
-            </div>
-          </motion.div>
+        <div className="gsap-policy">
+          <p className="mb-2"><strong>Deposit:</strong> A 25% non-refundable deposit is required to secure your booking.</p>
         </div>
       </motion.div>
 
@@ -260,43 +275,49 @@ const AppointmentForm = () => {
         transition={{ delay: 0.5 }}
         className="mt-8 bg-white p-6 rounded-lg shadow-lg max-w-4xl w-full backdrop-blur-sm bg-opacity-90"
       >
-        <h3 className="text-3xl font-bold text-[#8b6f4e] mb-6 flex items-center">
-          <X className="mr-3 w-8 h-8" /> Cancellation Policy
-        </h3>
+        <h3 className="text-3xl font-bold text-[#8b6f4e] mb-6">Cancellation Policy</h3>
         <div className="gsap-policy space-y-4">
-          <motion.div 
-            className="bg-[#f0e6d9] p-4 rounded-lg"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <ul className="list-disc pl-5 space-y-2">
-              <li>Cancellations made 4 days or more before the scheduled booking will receive a full refund.</li>
-              <li>Cancellations made within 48 hours of the booking will receive a 50% refund.</li>
-              <li>No refunds will be given for cancellations made within 24 hours of the booking.</li>
-            </ul>
-            <p className="mt-4 text-sm text-gray-600">We understand that emergencies can happen. In case of serious illness or unforeseen circumstances, please contact us as soon as possible, and we will do our best to accommodate your situation.</p>
-          </motion.div>
+          <ul className="list-disc pl-5 mb-4 space-y-2">
+            <li>Cancellations made 4 days or more before the scheduled booking will receive a full refund.</li>
+            <li>Cancellations made within 48 hours of the booking will receive a 50% refund.</li>
+            <li>No refunds will be given for cancellations made within 24 hours of the booking.</li>
+          </ul>
         </div>
-        <div className="mt-8 bg-[#f0e6d9] p-4 rounded-lg">
-          <h4 className="text-xl font-semibold text-[#8b6f4e] mb-4">Get in Touch:</h4>
+        <div className="mt-6">
+          <h4 className="text-xl font-semibold text-[#8b6f4e] mb-2">Get in Touch:</h4>
           <div className="flex items-center space-x-4 mb-2">
             <motion.div whileHover={{ scale: 1.1 }} className="bg-[#8b6f4e] p-2 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
+              <Mail className="h-6 w-6 text-white" />
             </motion.div>
             <p><strong>Email:</strong> [Your Email]</p>
           </div>
           <div className="flex items-center space-x-4">
             <motion.div whileHover={{ scale: 1.1 }} className="bg-[#8b6f4e] p-2 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
+              <Phone className="h-6 w-6 text-white" />
             </motion.div>
             <p><strong>Phone:</strong> [Your Phone Number]</p>
           </div>
         </div>
       </motion.div>
+
+      {showPopup && (
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -50 }}
+          className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50"
+        >
+          <div className="bg-white p-8 rounded-lg shadow-xl">
+            <p className="text-xl font-semibold mb-4">{popupMessage}</p>
+            <button
+              onClick={() => setShowPopup(false)}
+              className="bg-[#8b6f4e] text-white py-2 px-4 rounded-lg hover:bg-[#725a3f] transition-colors duration-300"
+            >
+              Close
+            </button>
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 };
