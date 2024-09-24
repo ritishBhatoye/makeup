@@ -8,17 +8,17 @@ export const dataset = assertValue(
 
 export const projectId = assertValue(
   process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  'Missing environment variable:sttf02s5'
+  'Missing environment variable: 72ue9i2x'
 )
 
 export const token = assertValue(
   process.env.NEXT_PUBLIC_SANITY_API_TOKEN,
-  'Missing environment variable: skdw4pmN9jeslgyFClfT8jeyo7mvZqHHulEzhn058qqksMmIZZ92jpFDfACXMBj8ICItzPDh9dkCNzSWCSOhQ5IyqkPNU2a6Q1jrSy7oPM29u7tJ4WxJbAqdl0uHdBneSI2fd7CWYasrRdyD225rudqmMuBz0TknR8Rzx7oVYWr61E1s9abt'
+  'Missing environment variable: skzHCGXRsZu4hJPtLLVF15pxkvflJeQQKqUYtVND8pqsQrXhgvR8XbryTMxm7hITGYxA0UIrVLqEB2sB7fyMA8D12unIq9chvsrMZ1wDvfdAtvHCbkQtiJ0SK8XHcnASFIKsmNY3ZO4Ke6zYtkkcFcZDR4tGL5mWIgj8tCpCxqPFzALUL4nK'
 )
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {
-    throw new Error(errorMessage) 
+    throw new Error(errorMessage)
   }
 
   return v
