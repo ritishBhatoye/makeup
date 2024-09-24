@@ -6,6 +6,7 @@ import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 import { Star } from 'lucide-react'
 import { gsap } from 'gsap'
+import Image from 'next/image';
 
 interface Review {
   id: number
@@ -72,7 +73,7 @@ export function AboutReviews() {
   const [currentReview, setCurrentReview] = useState(0)
   const titleRef = useRef<HTMLHeadingElement>(null)
 
-  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+  const [sliderRef] = useKeenSlider<HTMLDivElement>({
     loop: true,
     mode: "free-snap",
     slides: { perView: 1, spacing: 15 },
@@ -121,10 +122,12 @@ export function AboutReviews() {
                     </div>
                     <p className="text-[#8B4E4E] mb-4 italic text-lg">&ldquo;{review.content}&rdquo;</p>
                     <div className="flex items-center">
-                      <img 
+                      <Image 
                         src={review.image} 
                         alt={review.name} 
-                        className="w-12 h-12 rounded-full object-cover mr-4"
+                        width={500} // Set appropriate width
+                        height={300} // Set appropriate height
+                        layout="responsive" // or another appropriate layout
                       />
                       <div>
                         <h4 className="font-semibold text-[#8B4E4E]">{review.name}</h4>
