@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from "lucide-react";
-import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 const navItems = [
   { label: 'HOME', href: '/' },
@@ -35,35 +34,26 @@ const navItems = [
 ];
 
 export default function Header() {
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
-  const dropdownRef = useRef<HTMLLIElement>(null);
   const router = useRouter();
-
   const pathname = usePathname();
 
-  const toggleNavBar = () => {
-    setMobileDrawerOpen(!mobileDrawerOpen);
-  };
+  const toggleNavBar = () => setMobileDrawerOpen(!mobileDrawerOpen);
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setActiveDropdown(null);
+    const handleResize = () => {
+      if (window.innerWidth >= 1024 && mobileDrawerOpen) {
+        setMobileDrawerOpen(false);
       }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [mobileDrawerOpen]);
 
   const isActive = (href: string) => pathname === href;
 
-  const handleBookNow = () => {
-    router.push('/get_in_touch/appointment');
-  };
+  const handleBookNow = () => router.push('/get_in_touch/appointment');
 
   return (
     <nav className='sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-text/20 bg-background/80'>
@@ -76,12 +66,7 @@ export default function Header() {
           
           <ul className='hidden lg:flex ml-14 space-x-12'>
             {navItems.map((item, index) => (
-              <li key={index} 
-                  ref={item.subItems ? dropdownRef : null}
-                  onMouseEnter={() => item.subItems && setActiveDropdown(item.label)}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                  className="relative group"
-              > 
+              <li key={index} className="relative group">
                 <Link 
                   href={item.href}
                   className={`relative py-2 px-3 transition-colors duration-400 ${isActive(item.href) ? 'text-[#b7a576]' : 'text-text hover:text-[#b7a576]'}`}
@@ -117,41 +102,50 @@ export default function Header() {
               BOOK NOW
             </button>
           </div>
-          <div className='lg:hidden md:flex flex-col justify-end'>
-            <button onClick={toggleNavBar} className="text-text">
-              {mobileDrawerOpen ? <X /> : <Menu />}
-            </button>
-          </div>
+          <button onClick={toggleNavBar} className="lg:hidden text-text">
+            {mobileDrawerOpen ? <X /> : <Menu />}
+          </button>
         </div>
+        
         {mobileDrawerOpen && (
-          <div className='fixed right-0 z-20 bg-background w-full p-12 flex flex-col justify-center items-center lg:hidden'>
-            <ul>
+          <div className='fixed inset-0 z-20 bg-background p-12 flex flex-col justify-center items-center lg:hidden'>
+            <ul className="space-y-4">
               {navItems.map((item, index) => (
-                <li key={index} className='py-4'>
+                <li key={index}>
                   <Link 
                     href={item.href}
                     onClick={() => setMobileDrawerOpen(false)}
-                    className={`relative py-2 px-3 transition-colors duration-300 ${isActive(item.href) ? 'text-orange-500' : 'text-text hover:text-orange-500'}`}
+                    className={`relative py-2 px-3 transition-colors duration-300 ${isActive(item.href) ? 'text-[#b7a576]' : 'text-text hover:text-[#b7a576]'}`}
                   >
                     {item.label}
-                    <span 
-                      className={`absolute bottom-0 left-0 right-0 h-1 transition-width duration-300 ${isActive(item.href) ? 'bg-gradient-to-r from-orange-500 to-orange-800 w-full' : 'w-0 group-hover:w-full'}`}
-                    ></span>
                   </Link>
+                  {item.subItems && (
+                    <ul className="ml-4 mt-2 space-y-2">
+                      {item.subItems.map((subItem, subIndex) => (
+                        <li key={subIndex}>
+                          <Link 
+                            href={subItem.href}
+                            onClick={() => setMobileDrawerOpen(false)}
+                            className="block py-1 text-sm text-text hover:text-[#b7a576] transition-colors duration-300"
+                          >
+                            {subItem.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               ))}
             </ul>
-            <div className='flex'>
-              <button 
-                onClick={() => {
-                  setMobileDrawerOpen(false);
-                  handleBookNow();
-                }}
-                className='bg-gradient-to-r from-[#b7a576] via-[#6b5c4c] to-[#f2ede8] py-2 px-3 rounded-md text-background'
-              >
-                BOOK NOW
-              </button>
-            </div>
+            <button 
+              onClick={() => {
+                setMobileDrawerOpen(false);
+                handleBookNow();
+              }}
+              className='mt-8 bg-gradient-to-r from-[#b7a576] via-[#6b5c4c] to-[#f2ede8] py-2 px-3 rounded-md text-background'
+            >
+              BOOK NOW
+            </button>
           </div>
         )}
       </div>
