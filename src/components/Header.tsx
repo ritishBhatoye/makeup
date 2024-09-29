@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X } from "lucide-react";
+import { Link, Menu, X } from "lucide-react";
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
