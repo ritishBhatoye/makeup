@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from "lucide-react";
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const navItems = [
   { label: 'HOME', href: '/' },
@@ -34,38 +35,46 @@ const navItems = [
 ];
 
 export default function Header() {
-  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
   const router = useRouter();
+
   const pathname = usePathname();
 
-  const toggleNavBar = () => setMobileDrawerOpen(!mobileDrawerOpen);
+  const toggleNavBar = () => {
+    setMobileDrawerOpen(!mobileDrawerOpen);
+  };
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setActiveDropdown(null);
       }
-    };
+    }
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const isActive = (href: string) => pathname === href;
-  const handleBookNow = () => router.push('/get_in_touch/appointment');
+
+  const handleBookNow = () => {
+    router.push('/get_in_touch/appointment');
+  };
 
   return (
-    <nav className='sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-[#6b5c4c]/20 bg-[#f2ede8]/80'>
+    <nav className='sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-text/20 bg-background/80'>
       <div className='container px-4 mx-auto relative text-sm'>
         <div className='flex justify-between items-center'>
           <div className='flex items-center flex-shrink-0'>
-            <Image src="/images/logo.png" alt="Sheena Logo" width={80} height={80} className='h-auto w-16 sm:w-20 mr-2' />
-            <span className='text-lg sm:text-xl font-semibold tracking-tight text-[#6b5c4c]'>Sheena</span>
+            <Image src="/images/logo.png" alt="Sheena Logo" width={80} height={80} className='h-auto w-20 mr-2' />
+            <span className='text-l tracking-tight text-text'>Sheena</span>
           </div>
           
-          <ul className='hidden lg:flex ml-4 xl:ml-14 space-x-6 xl:space-x-12'>
+          <ul className='hidden lg:flex ml-14 space-x-12'>
             {navItems.map((item, index) => (
               <li key={index} 
                   ref={item.subItems ? dropdownRef : null}
@@ -75,20 +84,20 @@ export default function Header() {
               > 
                 <Link 
                   href={item.href}
-                  className={`relative py-2 px-3 transition-colors duration-300 ${isActive(item.href) ? 'text-[#b7a576]' : 'text-[#6b5c4c] hover:text-[#b7a576]'}`}
+                  className={`relative py-2 px-3 transition-colors duration-400 ${isActive(item.href) ? 'text-[#b7a576]' : 'text-text hover:text-[#b7a576]'}`}
                 >
                   {item.label}
                   <span 
-                    className={`absolute bottom-0 left-0 right-0 h-0.5 transition-all duration-300 ${isActive(item.href) ? 'bg-gradient-to-r from-[#b7a576] via-[#6b5c4c] to-[#f2ede8] w-full' : 'w-0 group-hover:w-full'}`}
+                    className={`absolute bottom-0 left-0 right-0 h-0.5 transition-width duration-500 ${isActive(item.href) ? 'bg-gradient-to-r from-[#b7a576] via-[#6b5c4c] to-[#f2ede8] w-full' : 'w-0 group-hover:w-full'}`}
                   ></span>
                 </Link>
                 {item.subItems && (
-                  <ul className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-md overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 invisible group-hover:visible">
+                  <ul className="absolute left-0 mt-2 w-64 bg-background shadow-lg rounded-md overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 invisible group-hover:visible">
                     {item.subItems.map((subItem, subIndex) => (
                       <li key={subIndex}>
                         <Link 
                           href={subItem.href}
-                          className="block px-4 py-2 text-sm text-[#6b5c4c] hover:bg-[#6b5c4c] hover:text-white transition-colors duration-300"
+                          className="block px-4 py-2 text-sm text-text hover:bg-text hover:text-background transition-colors duration-300"
                         >
                           {subItem.label}
                         </Link>
@@ -103,54 +112,42 @@ export default function Header() {
           <div className='hidden lg:flex justify-center items-center'>
             <button 
               onClick={handleBookNow}
-              className='bg-gradient-to-r from-[#b7a576] via-[#6b5c4c] to-[#f2ede8] py-2 px-4 rounded-md text-white font-semibold hover:opacity-90 transition-opacity duration-300'
+              className='bg-gradient-to-r from-[#b7a576] via-[#6b5c4c] to-[#f2ede8] py-2 px-3 rounded-md text-background'
             >
               BOOK NOW
             </button>
           </div>
-          <div className='lg:hidden flex flex-col justify-end'>
-            <button onClick={toggleNavBar} className="text-[#6b5c4c]">
-              {mobileDrawerOpen ? <X size={24} /> : <Menu size={24} />}
+          <div className='lg:hidden md:flex flex-col justify-end'>
+            <button onClick={toggleNavBar} className="text-text">
+              {mobileDrawerOpen ? <X /> : <Menu />}
             </button>
           </div>
         </div>
         {mobileDrawerOpen && (
-          <div className='fixed inset-0 z-20 bg-[#f2ede8] flex flex-col justify-start items-center pt-20 lg:hidden'>
-            <ul className='w-full'>
+          <div className='fixed right-0 z-20 bg-background w-full p-12 flex flex-col justify-center items-center lg:hidden'>
+            <ul>
               {navItems.map((item, index) => (
-                <li key={index} className='py-4 border-b border-[#6b5c4c]/20 last:border-b-0'>
+                <li key={index} className='py-4'>
                   <Link 
                     href={item.href}
                     onClick={() => setMobileDrawerOpen(false)}
-                    className={`block py-2 px-6 text-center transition-colors duration-300 ${isActive(item.href) ? 'text-[#b7a576]' : 'text-[#6b5c4c] hover:text-[#b7a576]'}`}
+                    className={`relative py-2 px-3 transition-colors duration-300 ${isActive(item.href) ? 'text-orange-500' : 'text-text hover:text-orange-500'}`}
                   >
                     {item.label}
+                    <span 
+                      className={`absolute bottom-0 left-0 right-0 h-1 transition-width duration-300 ${isActive(item.href) ? 'bg-gradient-to-r from-orange-500 to-orange-800 w-full' : 'w-0 group-hover:w-full'}`}
+                    ></span>
                   </Link>
-                  {item.subItems && (
-                    <ul className="mt-2 bg-white/50 rounded-md overflow-hidden">
-                      {item.subItems.map((subItem, subIndex) => (
-                        <li key={subIndex}>
-                          <Link 
-                            href={subItem.href}
-                            onClick={() => setMobileDrawerOpen(false)}
-                            className="block px-8 py-2 text-sm text-[#6b5c4c] hover:bg-[#6b5c4c] hover:text-white transition-colors duration-300"
-                          >
-                            {subItem.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
                 </li>
               ))}
             </ul>
-            <div className='mt-8'>
+            <div className='flex'>
               <button 
                 onClick={() => {
                   setMobileDrawerOpen(false);
                   handleBookNow();
                 }}
-                className='bg-gradient-to-r from-[#b7a576] via-[#6b5c4c] to-[#f2ede8] py-2 px-6 rounded-md text-white font-semibold hover:opacity-90 transition-opacity duration-300'
+                className='bg-gradient-to-r from-[#b7a576] via-[#6b5c4c] to-[#f2ede8] py-2 px-3 rounded-md text-background'
               >
                 BOOK NOW
               </button>
