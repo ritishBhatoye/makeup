@@ -6,7 +6,7 @@ export function AboutUs() {
     <div className="flex flex-col md:flex-row gap-8 items-center">
       <div className="w-full md:w-1/2">
         <Image
-          src="/path/to/skincare-image.jpg"
+          src="/images/image_7.jpg"
           alt="Woman applying skincare product"
           width={600}
           height={600}

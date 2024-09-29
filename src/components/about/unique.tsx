@@ -1,72 +1,101 @@
 'use client'
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { FaLeaf } from "react-icons/fa";
+// import { SparklesIcon } from "@heroicons/react/24/solid";
+import {
+  BeakerIcon,
+  HeartIcon,
+  ShieldCheckIcon,
+  SparklesIcon,
+  
+  NoSymbolIcon
+} from '@heroicons/react/24/outline';
 
 interface FeatureProps {
-  icon: string;
+  Icon: React.ElementType;
   title: string;
   description: string;
 }
 
-const Feature: React.FC<FeatureProps> = ({ icon, title, description }) => (
+const Feature: React.FC<FeatureProps> = ({ Icon, title, description }) => (
   <motion.div
-    className="flex flex-col items-center text-center"
+    className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
+    whileHover={{ scale: 1.05 }}
   >
-    <div className="mb-4">
-      <Image src={icon} alt={title} width={48} height={48} />
-    </div>
-    <h3 className="text-xl font-semibold mb-2">{title}</h3>
-    <p className="text-sm text-gray-600">{description}</p>
+    <motion.div 
+      className="mb-4 text-[#6b5c4c]"
+      whileHover={{ rotate: 360 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Icon className="w-12 h-12" />
+    </motion.div>
+    <h3 className="text-xl font-semibold mb-2 text-[#6b5c4c]">{title}</h3>
+    <p className="text-sm text-[#6b5c4c]">{description}</p>
   </motion.div>
 );
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
 export function Unique() {
   return (
-    <section className="py-16 bg-gradient-to-br from-amber-50 to-amber-100">
+    <section className="py-16 bg-[#f2ede8]">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-4xl font-bold text-center mb-12"
+          className="text-4xl font-bold text-center mb-12 text-[#6b5c4c]"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          What&apos;s Unique
+          What Makes Us Unique
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+        >
           <Feature
-            icon="/icons/fast-absorbing.svg"
+            Icon={BeakerIcon}
             title="Fast Absorbing"
-            description="Enim sed faucibus turpis in eu mi bibendum neque egestas."
+            description="Our formula is designed to be quickly absorbed, leaving your skin feeling refreshed and nourished."
           />
           <Feature
-            icon="/icons/cruelty-free.svg"
+            Icon={HeartIcon}
             title="Cruelty Free"
-            description="Enim sed faucibus turpis in eu mi bibendum neque egestas."
+            description="We're committed to ethical practices. All our products are cruelty-free and never tested on animals."
           />
           <Feature
-            icon="/icons/natural-ingredients.svg"
+            Icon={FaLeaf}
             title="Natural Ingredients"
-            description="Facilisi etiam dignissim diam quis enim lobortis dolor."
+            description="We use only the finest natural ingredients, sourced responsibly to ensure quality and effectiveness."
           />
           <Feature
-            icon="/icons/sulfates-free.svg"
+            Icon={ShieldCheckIcon}
             title="Sulfates Free"
-            description="Dolor morbi non arcu risus quis enim ut sem viverra varius."
+            description="Our products are free from harsh sulfates, ensuring gentle care for your skin and hair."
           />
           <Feature
-            icon="/icons/clinically-proven.svg"
+            Icon={SparklesIcon}
             title="Clinically Proven"
-            description="Rhoncus mattis rhoncus urna neque viverra justo nec."
+            description="Our formulas are backed by scientific research and clinical studies for proven results."
           />
           <Feature
-            icon="/icons/no-sls.svg"
+            Icon={NoSymbolIcon}
             title="No SLS"
-            description="Est lorem ipsum dolor sit amet consectetur adipiscing."
+            description="We've eliminated Sodium Lauryl Sulfate (SLS) from our products for a gentler, safer experience."
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

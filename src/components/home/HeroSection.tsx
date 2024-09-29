@@ -6,9 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const MovingImages = dynamic(() => import('./MovingImages'), { ssr: false });
 
-const column1Images = ['/images/image1.jpg', '/images/image1.jpg', '/images/image1.jpg', '/images/image1.jpg'];
-const column2Images = ['/images/image1.jpg', '/images/image1.jpg', '/images/image1.jpg', '/images/image1.jpg'];
-const column3Images = ['/images/image1.jpg', '/images/image1.jpg', '/images/image1.jpg', '/images/image1.jpg'];
+const column1Images = ['/images/hero/hero_0.jpg', '/images/hero/hero_1.jpg', '/images/hero/hero_2.jpg', '/images/hero/hero_3.jpg'];
+const column2Images = ['/images/hero/hero_4.jpg', '/images/hero/hero_5.jpg', '/images/hero/hero_6.jpg', '/images/hero/hero_7.jpg'];
+const column3Images = ['/images/hero/hero_8.jpg', '/images/hero/hero_9.jpg', '/images/hero/hero_10.jpg', '/images/hero/hero_11.jpg'];
 
 const heroContent = [
   {

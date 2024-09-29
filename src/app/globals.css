@@ -10,9 +10,17 @@
   background-color: #f2ede8;
   color: #6b5c4c;
 }
+
+@layer base {
+  body {
+    @apply bg-background text-text;
+  }
+}
+
 .font-montserrat {
   font-family: 'Montserrat', sans-serif;
 }
+
 .icon-white {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }

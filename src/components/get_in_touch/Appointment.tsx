@@ -23,23 +23,23 @@ const AppointmentForm = () => {
 
   useEffect(() => {
     gsap.from(".gsap-header", {
-      y: -50,
-      opacity: 0,
+      // y: -50,
+
       duration: 1,
       ease: "power3.out"
     });
 
     gsap.from(".gsap-leaf", {
       scale: 0,
-      opacity: 0,
+
       duration: 1,
       stagger: 0.2,
       ease: "back.out(1.7)"
     });
 
     gsap.from(".gsap-policy", {
-      x: -50,
-      opacity: 0,
+      // x: -50,
+
       duration: 1,
       stagger: 0.2,
       ease: "power3.out"

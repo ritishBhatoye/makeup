@@ -1,31 +1,32 @@
 'use client'
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { BeakerIcon, SparklesIcon, NoSymbolIcon, HeartIcon } from '@heroicons/react/24/outline';
 
 interface SecretFeature {
-  icon: string;
+  icon: React.ElementType;
   title: string;
   description: string;
 }
 
 const features: SecretFeature[] = [
   {
-    icon: '/icons/chemicals-free.svg',
+    icon: BeakerIcon,
     title: 'Chemicals Free',
     description: 'Cursus sit amet dictum sit amet. Cras adipiscing enim eu turpis egestas pretium aenean.',
   },
   {
-    icon: '/icons/oil-free.svg',
+    icon: SparklesIcon,
     title: 'Oil Free Formula',
     description: 'Blandit turpis cursus in hac habitasse platea dictumst quisque sagittis. Enim nulla aliquet porttitor lacus.',
   },
   {
-    icon: '/icons/fragrance-free.svg',
+    icon: NoSymbolIcon,
     title: '100% Fragrance Free',
     description: 'Amet venenatis urna cursus eget. Dictum non consectetur a erat nam at lectus urna.',
   },
   {
-    icon: '/icons/cruelty-free.svg',
+    icon: HeartIcon,
     title: 'Cruelty Free',
     description: 'Elit ut aliquam purus sit amet. Pellentesque diam volutpat commodo sed egestas egestas fringilla.',
   },
@@ -55,19 +56,13 @@ export function OurSecret() {
               className="text-center relative"      
             >
               <div className="mb-6">
-                <Image 
-                  src={feature.icon} 
-                  alt={feature.title} 
-                  width={80} 
-                  height={80} 
-                  className="mx-auto transition-transform duration-300 hover:scale-110"
-                />
+                <feature.icon className="h-20 w-20 mx-auto text-primary transition-transform duration-300 hover:scale-110" />
               </div>
               <h3 className="text-xl font-serif mb-3">{feature.title}</h3>
               <p className="text-sm text-gray-600">{feature.description}</p>
               
               {index < features.length - 1 && (
-                <div className="hidden lg:block  absolute   top-0 -right-2 w-px h-full bg-gray-300" />
+                <div className="hidden lg:block absolute top-0 -right-2 w-px h-full bg-gray-300" />
               )}
             </motion.div>
           ))}
