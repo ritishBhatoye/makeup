@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 interface MovingImagesProps {
@@ -8,33 +8,54 @@ interface MovingImagesProps {
   direction: 'up' | 'down';
 }
 
-function MovingImages({ images, direction }: MovingImagesProps) {
+export default function MovingImages({ images, direction }: MovingImagesProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let animationId: number;
+    let startTime: number;
+    const speed = 50; // Pixels per second
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const totalHeight = container.offsetHeight / 3;
+      let position = (elapsed * speed / 1000) % totalHeight;
+
+      if (direction === 'up') {
+        position = totalHeight - position;
+      }
+
+      container.style.transform = `translateY(-${position}px)`;
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationId);
+  }, [direction]);
+
+  // Triple the images array to ensure seamless looping
+  const tripleImages = [...images, ...images, ...images];
+
   return (
-    <div className="relative w-full sm:w-1/2 lg:w-1/3 h-[300px] sm:h-[400px] lg:h-[600px] overflow-hidden bg-[#f2ede8]">
-      <motion.div
-        initial={{ y: direction === 'down' ? '-100%' : '100%' }}
-        animate={{ y: direction === 'down' ? '100%' : '-100%' }}
-        transition={{
-          repeat: Infinity,
-          repeatType: 'loop',
-          duration: 20,
-          ease: 'linear',
-        }}
-        className="flex flex-col gap-4 absolute right-0 left-0 sm:left-auto"
-      >
-        {images.map((src, index) => (
-          <Image
-            key={index}
-            src={src}
-            alt={`Moving image ${index + 1}`}
-            width={200}
-            height={250}
-            className="rounded-2xl shadow-md mx-auto sm:mx-0"
-          />
+    <div className="overflow-hidden relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-full">
+      <div ref={containerRef} className="flex flex-col">
+        {tripleImages.map((src, index) => (
+          <div key={index} className="w-full aspect-[3/4] relative mb-4">
+            <Image
+              src={src}
+              alt={`Moving image ${(index % images.length) + 1}`}
+              fill
+              style={{ objectFit: 'cover' }}
+              priority={index < images.length}
+            />
+          </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
-
-export default MovingImages;

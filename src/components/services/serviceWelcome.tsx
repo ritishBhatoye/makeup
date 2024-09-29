@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ServiceItem } from './serviceItem';
@@ -34,6 +34,18 @@ const services = [
 
 const ServiceWelcome: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768); // Adjust breakpoint as needed
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => 
@@ -68,31 +80,47 @@ const ServiceWelcome: React.FC = () => {
       </motion.div>
 
       <div className="relative">
-        <div className="flex justify-center overflow-hidden">
-          {[services[currentIndex]].map((service, index) => (
+        {isMobile ? (
+          <div className="flex justify-center overflow-hidden">
             <ServiceItem
-              key={service.title}
-              title={service.title}
-              description={service.description}
-              image={service.image}
-              delay={index + 1}
+              key={services[currentIndex].title}
+              title={services[currentIndex].title}
+              description={services[currentIndex].description}
+              image={services[currentIndex].image}
+              delay={1}
             />
-          ))}
-        </div>
-        <button
-          onClick={prevSlide}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
-          aria-label="Previous service"
-        >
-          <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 text-[#6b5c4c]" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
-          aria-label="Next service"
-        >
-          <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-[#6b5c4c]" />
-        </button>
+          </div>
+        ) : (
+          <div className="flex overflow-x-auto pb-4 space-x-4">
+            {services.map((service, index) => (
+              <ServiceItem
+                key={service.title}
+                title={service.title}
+                description={service.description}
+                image={service.image}
+                delay={index + 1}
+              />
+            ))}
+          </div>
+        )}
+        {isMobile && (
+          <>
+            <button
+              onClick={prevSlide}
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
+              aria-label="Previous service"
+            >
+              <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 text-[#6b5c4c]" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
+              aria-label="Next service"
+            >
+              <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-[#6b5c4c]" />
+            </button>
+          </>
+        )}
       </div>
     </motion.section>
   );

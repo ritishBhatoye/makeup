@@ -81,11 +81,11 @@ const ServiceMainPage: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="mt-6 sm:mt-8">
+          {/* <div className="mt-6 sm:mt-8">
             <Link href="/services/bleaching" className="inline-block bg-[#6b5c4c] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#5a4d3f] transition-colors duration-300">
               Explore Our Services
             </Link>
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </section>

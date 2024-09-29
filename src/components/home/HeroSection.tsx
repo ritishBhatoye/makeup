@@ -1,10 +1,8 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const MovingImages = dynamic(() => import('./MovingImages'), { ssr: false });
+import MovingImages from './MovingImages';
 
 const column1Images = ['/images/hero/hero_0.jpg', '/images/hero/hero_1.jpg', '/images/hero/hero_2.jpg', '/images/hero/hero_3.jpg'];
 const column2Images = ['/images/hero/hero_4.jpg', '/images/hero/hero_5.jpg', '/images/hero/hero_6.jpg', '/images/hero/hero_7.jpg'];
@@ -59,13 +57,13 @@ export default function HeroSection() {
 
   return (
     <section className="py-12 relative overflow-hidden">
-      <div className="container mx-auto px-4 flex relative z-10">
-        {/* Left side: Text content */}
-        <div className="w-1/3 pr-2 flex flex-col justify-center">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row relative z-10">
+        {/* Text content */}
+        <div className="w-full md:w-1/3 pr-2 flex flex-col justify-center mb-8 md:mb-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={contentIndex}
-              initial="hidden"
+              initial="visible"
               animate="visible"
               exit="exit"
               variants={textVariants}
@@ -88,9 +86,9 @@ export default function HeroSection() {
           </AnimatePresence>
         </div>
         
-        {/* Right side: Moving images */}
-        <div className="w-2/3 relative h-[600px] overflow-hidden -ml-2">
-          <div className="absolute inset-0 flex">
+        {/* Moving images */}
+        <div className="w-full md:w-2/3 h-[600px] overflow-hidden">
+          <div className="grid grid-cols-3 gap-4 h-full">
             <MovingImages images={column1Images} direction="down" />
             <MovingImages images={column2Images} direction="up" />
             <MovingImages images={column3Images} direction="down" />
@@ -133,4 +131,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
