@@ -99,21 +99,21 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white">
-      <div className="container mx-auto px-4 py-16">
+    <div className="min-h-screen bg-[#f2ede8]">
+      <div className="container mx-auto px-4 py-8 sm:py-12 md:py-16">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-6xl font-extrabold text-gray-800 mb-8 text-center"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#6b5c4c] mb-6 sm:mb-8 text-center"
         >
           {service.title}
         </motion.h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 lg:mb-16">
           <motion.div
             ref={imageRef}
-            className="relative h-96 rounded-lg overflow-hidden shadow-2xl"
+            className="relative h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden shadow-2xl"
           >
             <Image
               src={service.image}
@@ -129,16 +129,17 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
             animate={controls}
             variants={containerVariants}
             ref={ref}
+            className="mt-6 lg:mt-0"
           >
             <motion.p
               variants={itemVariants}
-              className="text-xl text-gray-600 mb-6"
+              className="text-lg sm:text-xl text-[#6b5c4c] mb-6"
             >
               {service.description}
             </motion.p>
             <motion.h2
               variants={itemVariants}
-              className="text-2xl font-bold text-gray-800 mb-4"
+              className="text-xl sm:text-2xl font-bold text-[#6b5c4c] mb-4"
             >
               Benefits:
             </motion.h2>
@@ -147,9 +148,9 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
                 <motion.li
                   key={index}
                   variants={itemVariants}
-                  className="flex items-center text-gray-700"
+                  className="flex items-center text-[#6b5c4c]"
                 >
-                  <ChevronRight className="w-5 h-5 text-yellow-500 mr-2" />
+                  <ChevronRight className="w-5 h-5 text-[#6b5c4c] mr-2" />
                   {benefit}
                 </motion.li>
               ))}
@@ -157,35 +158,35 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12 lg:mb-16">
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-white rounded-lg shadow-lg p-6 flex items-center justify-between cursor-pointer transition-all duration-300 hover:shadow-xl"
+            className="bg-white rounded-lg shadow-lg p-4 sm:p-6 flex items-center justify-between cursor-pointer transition-all duration-300 hover:shadow-xl"
           >
             <div className="flex items-center">
-              <FileText className="w-10 h-10 text-yellow-500 mr-4" />
+              <FileText className="w-8 h-8 sm:w-10 sm:h-10 text-[#6b5c4c] mr-3 sm:mr-4" />
               <div>
-                <h3 className="text-xl font-semibold text-gray-800">Detailed Services</h3>
-                <p className="text-gray-600">Download PDF</p>
+                <h3 className="text-lg sm:text-xl font-semibold text-[#6b5c4c]">Detailed Services</h3>
+                <p className="text-sm sm:text-base text-[#6b5c4c]">Download PDF</p>
               </div>
             </div>
-            <Download className="w-6 h-6 text-gray-400" />
+            <Download className="w-5 h-5 sm:w-6 sm:h-6 text-[#6b5c4c]" />
           </motion.div>
 
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-white rounded-lg shadow-lg p-6 flex items-center justify-between cursor-pointer transition-all duration-300 hover:shadow-xl"
+            className="bg-white rounded-lg shadow-lg p-4 sm:p-6 flex items-center justify-between cursor-pointer transition-all duration-300 hover:shadow-xl"
           >
             <div className="flex items-center">
-              <FileText className="w-10 h-10 text-yellow-500 mr-4" />
+              <FileText className="w-8 h-8 sm:w-10 sm:h-10 text-[#6b5c4c] mr-3 sm:mr-4" />
               <div>
-                <h3 className="text-xl font-semibold text-gray-800">Service Details</h3>
-                <p className="text-gray-600">Download TXT</p>
+                <h3 className="text-lg sm:text-xl font-semibold text-[#6b5c4c]">Service Details</h3>
+                <p className="text-sm sm:text-base text-[#6b5c4c]">Download TXT</p>
               </div>
             </div>
-            <Download className="w-6 h-6 text-gray-400" />
+            <Download className="w-5 h-5 sm:w-6 sm:h-6 text-[#6b5c4c]" />
           </motion.div>
         </div>
 
@@ -195,12 +196,12 @@ const ServicePage = ({ params }: { params: { service: string } }) => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-center"
         >
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Ready to experience our {service.title}?</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#6b5c4c] mb-6">Ready to experience our {service.title}?</h2>
           <Link href="/booknow" passHref>
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block bg-yellow-500 text-white font-semibold py-3 px-8 rounded-full text-lg shadow-lg transition-all duration-300 hover:bg-yellow-600 hover:shadow-xl"
+              className="inline-block bg-[#6b5c4c] text-white font-semibold py-3 px-6 sm:px-8 rounded-full text-base sm:text-lg shadow-lg transition-all duration-300 hover:bg-[#5a4d3f] hover:shadow-xl"
             >
               Book Now
             </motion.a>

@@ -38,10 +38,10 @@ const StatItem = ({ number, label }: StatItemProps) => {
   }, [number]);
 
   return (
-    <div className="text-center py-4 border-t border-b border-r border-[#6b5c4c] min-w-[250px] flex-shrink-0">
+    <div className="text-center py-4 border-b border-[#6b5c4c] last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0 min-w-[150px] sm:min-w-[200px] md:min-w-[250px] flex-1 sm:flex-none">
       <motion.div
         ref={numberRef}
-        className="text-4xl md:text-5xl font-serif text-[#6b5c4c] mb-2"
+        className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#6b5c4c] mb-2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -49,7 +49,7 @@ const StatItem = ({ number, label }: StatItemProps) => {
         0
       </motion.div>
       <motion.div
-        className="text-sm md:text-lg text-[#6b5c4c]"
+        className="text-xs sm:text-sm md:text-lg text-[#6b5c4c]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}

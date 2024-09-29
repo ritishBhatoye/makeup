@@ -76,22 +76,22 @@ export default function ServicePage({ params }: { params: { service: string } })
 
   return (
     <div className="min-h-screen bg-[#f2ede8] text-[#6b5c4c]">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-8 sm:py-12 md:py-16">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-6xl font-extrabold mb-8 text-center"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 sm:mb-8 text-center"
         >
           {service.title}
         </motion.h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 lg:mb-16">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative h-96 rounded-lg overflow-hidden shadow-2xl"
+            className="relative h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden shadow-2xl"
           >
             <Image
               src={service.image}
@@ -107,25 +107,26 @@ export default function ServicePage({ params }: { params: { service: string } })
             animate={controls}
             variants={containerVariants}
             ref={ref}
+            className="space-y-4 sm:space-y-6"
           >
             <motion.p
               variants={itemVariants}
-              className="text-xl mb-6"
+              className="text-lg sm:text-xl"
             >
               {service.description}
             </motion.p>
             <motion.h2
               variants={itemVariants}
-              className="text-2xl font-bold mb-4"
+              className="text-xl sm:text-2xl font-bold"
             >
               Why Choose Us:
             </motion.h2>
-            <ul className="space-y-2">
+            <ul className="space-y-2 sm:space-y-3">
               {['Expert makeup artists', 'High-quality products', 'Personalized service'].map((benefit, index) => (
                 <motion.li
                   key={index}
                   variants={itemVariants}
-                  className="flex items-center"
+                  className="flex items-center text-base sm:text-lg"
                 >
                   <ChevronRightIcon className="w-5 h-5 text-[#6b5c4c] mr-2" />
                   {benefit}

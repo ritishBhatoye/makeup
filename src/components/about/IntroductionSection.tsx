@@ -23,7 +23,6 @@ export const IntroductionSection: React.FC = () => {
   useEffect(() => {
     if (sectionRef.current) {
       gsap.from(sectionRef.current.querySelectorAll('.gsap-animate'), {
-        // opacity: 0,
         y: 50,
         stagger: 0.2,
         duration: 1,
@@ -39,11 +38,11 @@ export const IntroductionSection: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 px-4 md:px-8 lg:px-16 bg-[#f2ede8] overflow-hidden">
+    <section ref={sectionRef} className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-16 bg-[#f2ede8] overflow-hidden">
       <motion.div className="max-w-7xl mx-auto" style={{ opacity, scale }}>
-        <div className="flex flex-col lg:flex-row items-center justify-between">
+        <div className="flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-8">
           <motion.div 
-            className="w-full lg:w-1/2 mb-12 lg:mb-0"
+            className="w-full lg:w-1/2"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -59,7 +58,7 @@ export const IntroductionSection: React.FC = () => {
             </div>
           </motion.div>
           <motion.div 
-            className="w-full lg:w-1/2 lg:pl-16"
+            className="w-full lg:w-1/2"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -75,9 +74,9 @@ export const IntroductionSection: React.FC = () => {
             </div>
           </motion.div>
         </div>
-        <div className="text-center mt-24">
+        <div className="text-center mt-12 sm:mt-16 md:mt-20 lg:mt-24">
           <motion.h2 
-            className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#6b5c4c] mb-8 gsap-animate"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#6b5c4c] mb-4 sm:mb-6 md:mb-8 gsap-animate"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -85,7 +84,7 @@ export const IntroductionSection: React.FC = () => {
             OUR VISION AND MISSION
           </motion.h2>
           <motion.p 
-            className="text-xl md:text-2xl text-[#6b5c4c] max-w-3xl mx-auto mb-12 gsap-animate leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl text-[#6b5c4c] max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 gsap-animate leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
@@ -93,7 +92,7 @@ export const IntroductionSection: React.FC = () => {
             We strive to empower individuals through the art of beauty, creating transformative experiences that boost confidence and celebrate unique personalities.
           </motion.p>
           <motion.button 
-            className="bg-[#6b5c4c] text-white py-4 px-10 rounded-full text-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 gsap-animate"
+            className="bg-[#6b5c4c] text-white py-3 sm:py-4 px-6 sm:px-8 md:px-10 rounded-full text-lg sm:text-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 gsap-animate"
             whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(107, 92, 76, 0.5)" }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, y: 20 }}

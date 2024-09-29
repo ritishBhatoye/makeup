@@ -50,7 +50,7 @@ export default function HeroSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setContentIndex((prevIndex) => (prevIndex + 1) % heroContent.length);
-    }, 5000); // Change content every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
@@ -58,10 +58,10 @@ export default function HeroSection() {
   const currentContent = heroContent[contentIndex];
 
   return (
-    <section className="py-12 relative overflow-hidden">
-      <div className="container mx-auto px-4 flex relative z-10">
-        {/* Left side: Text content */}
-        <div className="w-1/3 pr-2 flex flex-col justify-center">
+    <section className="py-8 md:py-12 relative overflow-hidden bg-[#f2ede8] text-[#6b5c4c]">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row relative z-10">
+        {/* Text content */}
+        <div className="w-full md:w-1/3 pr-0 md:pr-2 flex flex-col justify-center mb-8 md:mb-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={contentIndex}
@@ -70,15 +70,16 @@ export default function HeroSection() {
               exit="exit"
               variants={textVariants}
               transition={{ duration: 0.5 }}
+              className="text-center md:text-left"
             >
-              <motion.h1 className="text-4xl font-bold mb-4">
+              <motion.h1 className="text-3xl md:text-4xl font-bold mb-4">
                 {currentContent.heading}
               </motion.h1>
-              <motion.p className="text-lg mb-8">
+              <motion.p className="text-base md:text-lg mb-6 md:mb-8">
                 {currentContent.paragraph}
               </motion.p>
               <motion.button
-                className="bg-text text-background px-6 py-2 rounded-full w-fit"
+                className="bg-[#6b5c4c] text-white px-6 py-2 rounded-full w-fit mx-auto md:mx-0"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -88,8 +89,8 @@ export default function HeroSection() {
           </AnimatePresence>
         </div>
         
-        {/* Right side: Moving images */}
-        <div className="w-2/3 relative h-[600px] overflow-hidden -ml-2">
+        {/* Moving images */}
+        <div className="w-full md:w-2/3 relative h-[400px] md:h-[600px] overflow-hidden md:-ml-2">
           <div className="absolute inset-0 flex">
             <MovingImages images={column1Images} direction="down" />
             <MovingImages images={column2Images} direction="up" />
@@ -100,7 +101,7 @@ export default function HeroSection() {
 
       {/* Simple leaf design (bottom-left) */}
       <motion.svg
-        className="absolute bottom-0 left-0 w-64 h-64 text-[#6b5c4c]"
+        className="absolute bottom-0 left-0 w-32 h-32 md:w-64 md:h-64 text-[#6b5c4c]"
         viewBox="0 0 100 100"
         initial="hidden"
         animate="visible"
@@ -122,7 +123,7 @@ export default function HeroSection() {
 
       {/* Dark gradient (bottom-right) */}
       <motion.div
-        className="absolute bottom-0 right-0 w-96 h-96 rounded-tl-full"
+        className="absolute bottom-0 right-0 w-48 h-48 md:w-96 md:h-96 rounded-tl-full"
         style={{
           background: `radial-gradient(circle at bottom right, rgba(107,92,76,0.3) 0%, rgba(107,92,76,0) 70%)`
         }}
@@ -133,4 +134,3 @@ export default function HeroSection() {
     </section>
   );
 }
-

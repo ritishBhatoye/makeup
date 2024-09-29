@@ -19,21 +19,21 @@ interface FeatureProps {
 
 const Feature: React.FC<FeatureProps> = ({ Icon, title, description }) => (
   <motion.div
-    className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+    className="flex flex-col items-center text-center p-4 sm:p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
     whileHover={{ scale: 1.05 }}
   >
     <motion.div 
-      className="mb-4 text-[#6b5c4c]"
+      className="mb-3 sm:mb-4 text-[#6b5c4c]"
       whileHover={{ rotate: 360 }}
       transition={{ duration: 0.5 }}
     >
-      <Icon className="w-12 h-12" />
+      <Icon className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12" />
     </motion.div>
-    <h3 className="text-xl font-semibold mb-2 text-[#6b5c4c]">{title}</h3>
-    <p className="text-sm text-[#6b5c4c]">{description}</p>
+    <h3 className="text-lg sm:text-xl font-semibold mb-2 text-[#6b5c4c]">{title}</h3>
+    <p className="text-xs sm:text-sm text-[#6b5c4c]">{description}</p>
   </motion.div>
 );
 
@@ -49,10 +49,10 @@ const containerVariants = {
 
 export function Unique() {
   return (
-    <section className="py-16 bg-[#f2ede8]">
+    <section className="py-8 sm:py-12 lg:py-16 bg-[#f2ede8]">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-4xl font-bold text-center mb-12 text-[#6b5c4c]"
+          className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8 lg:mb-12 text-[#6b5c4c]"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -60,7 +60,7 @@ export function Unique() {
           What Makes Us Unique
         </motion.h2>
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

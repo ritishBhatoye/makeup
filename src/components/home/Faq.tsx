@@ -57,14 +57,14 @@ const Faq: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-[#f2ede8] py-20"
+      className="bg-[#f2ede8] py-12 sm:py-16 md:py-20"
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-center text-4xl md:text-5xl font-serif mb-2"
+          className="text-center text-3xl sm:text-4xl md:text-5xl font-serif mb-2 text-[#6b5c4c]"
         >
           Frequently Asked Questions
         </motion.h2>
@@ -72,12 +72,12 @@ const Faq: React.FC = () => {
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-center text-sm mb-12"
+          className="text-center text-sm mb-8 sm:mb-12 text-[#6b5c4c]"
         >
           GOT QUESTIONS?
         </motion.p>
         
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8">
           <motion.div 
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
