@@ -51,6 +51,7 @@ export const IntroductionSection: React.FC = () => {
               <Image
                 src="/images/image_1.jpg"
                 alt="Hairstylist working on client"
+
                 layout="fill"
                 objectFit="cover"
                 className="filter brightness-90 hover:brightness-100 transition-all duration-300"
@@ -340,9 +341,18 @@ export const AboutMeSection: React.FC = () => {
             <div className="flex flex-col gap-2">
               <h3 className="text-2xl font-semibold text-[#6b5c4c] flex">Get different award my achievement work</h3>
               <div className="flex flex-row space-x-4">
-                <Image src="/path/to/award1.png" alt="Premium Quality" className="w-16 h-16 award-icon" />
-                <Image src="/path/to/award2.png" alt="100% Guaranteed" className="w-16 h-16 award-icon" />
-                <Image src="/path/to/award3.png" alt="Best Quality" className="w-16 h-16 award-icon" />
+                <Image
+                width={60}
+                height={60}
+                src="/images/award.png" alt="Premium Quality" className="w-16 h-16 award-icon" />
+                <Image 
+                     width={60}
+                     height={60}
+                src="/images/guarante.png" alt="100% Guaranteed" className="w-16 h-16 award-icon" />
+                <Image 
+                     width={60}
+                     height={60}
+                src="/images/bestQuality.png" alt="Best Quality" className="w-16 h-16 award-icon" />
               </div>
             </div>
             <motion.button 
@@ -357,7 +367,7 @@ export const AboutMeSection: React.FC = () => {
         
         <animated.div 
           ref={whyILoveRef}
-          className="text-center"
+          className="text-center h-auto"
           style={{
             // opacity: whyILoveSpring.opacity,
             transform: whyILoveSpring.y.to(y => `translateY(${y}px)`)
@@ -375,26 +385,21 @@ export const AboutMeSection: React.FC = () => {
               <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
             </svg>
           </div>
-          <motion.div
-            className="flex flex-col lg:flex-row  gap-2 justify-center "
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            {['Passion', 'Creativity', 'Transformation'].map((item, index) => (
-              <motion.div
-                key={item}
-                className="bg-white p-6 rounded-lg shadow-lg flex flex-col "
-                whileHover={{ y: -5, boxShadow: "0 10px 20px rgba(107, 92, 76, 0.2)" }}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 * index }}
-              >
-                <h3 className="text-xl font-semibold text-[#6b5c4c] ">{item}</h3>
-                <p className="text-[#6b5c4c]">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </motion.div>
-            ))}
-          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mt-8 px-4">
+  {['Passion', 'Creativity', 'Transformation'].map((item, index) => (
+    <motion.div
+      key={item}
+      className="bg-white p-6 rounded-lg shadow-lg"
+      whileHover={{ y: -5, boxShadow: "0 10px 20px rgba(107, 92, 76, 0.2)" }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.2 * index }}
+    >
+      <h3 className="text-xl font-semibold text-[#6b5c4c] mb-3">{item}</h3>
+      <p className="text-[#6b5c4c]">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </motion.div>
+  ))}
+</div>
         </animated.div>
       </motion.div>
     </section>
