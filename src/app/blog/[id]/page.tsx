@@ -73,7 +73,7 @@ for (let i = 4; i <= 1000; i++) {
     category,
     title,
     excerpt,
-    image,
+    image:image.toString(),
     content
   });
 }

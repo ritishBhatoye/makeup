@@ -1,6 +1,4 @@
-import HairImage from "../../../../public/images/hairs.jpg"
-import SkinImage from "../../../../public/images/skincare.jpg"
-import MakeupImage from "../../../../public/images/Makeup1.jpg"
+
 
 export const blogPosts = [
     {
@@ -8,7 +6,7 @@ export const blogPosts = [
       category: "Skincare",
       title: "The Ultimate Guide to Glowing Skin: 10 Must-Try Products for Radiant Complexion",
       excerpt: "Achieve that coveted radiant complexion with our top picks for a luminous glow. From gentle exfoliators to hydrating serums, we've curated the perfect routine for all skin types. Discover the secrets to healthy, glowing skin.",
-      image: SkinImage,
+      image: "/images/skincare.jpg",
       content: `
         <h2>1. Gentle Exfoliating Cleanser</h2>
         <p>Start your routine with a gentle exfoliating cleanser to remove dead skin cells and unclog pores. Look for ingredients like glycolic acid or salicylic acid for effective yet non-irritating exfoliation. These ingredients help to reveal fresher, brighter skin without causing irritation.</p>
@@ -48,7 +46,7 @@ export const blogPosts = [
       category: "Makeup",
       title: "Summer Makeup Trends: 10 Effortless Looks for Hot Days",
       excerpt: "Discover the hottest makeup trends for the season that are both stunning and sweat-proof. We'll show you how to achieve that perfect sun-kissed glow without melting in the heat. Get ready to turn heads with these easy, breezy summer looks.",
-      image: HairImage,
+      image: "/images/hairs.jpg",
       content: `
         <h2>1. Dewy, Natural Skin</h2>
         <p>This summer, it's all about embracing your natural skin. Opt for lightweight, tinted moisturizers or BB creams instead of heavy foundations. Add a liquid highlighter to your cheekbones for that perfect dewy glow. Look for products with built-in SPF for added sun protection.</p>
@@ -88,7 +86,7 @@ export const blogPosts = [
       category: "Hair Care",
       title: "Revive Your Locks: The 10 Best Treatments for Damaged Hair",
       excerpt: "Say goodbye to dry, brittle strands! We've tested the most nourishing hair masks and treatments to bring your tresses back to life. Get ready for silky, smooth hair all year round with these expert-approved hair care solutions.",
-      image: MakeupImage,
+      image: "/images/Makeup1.jpg",
       content: `
         <h2>1. Deep Conditioning Mask</h2>
         <p>Start your hair revival journey with a deep conditioning mask. Look for products rich in ingredients like keratin, argan oil, or shea butter. Apply once a week, leaving it on for at least 20 minutes for maximum benefits. These masks can help restore moisture, improve elasticity, and reduce frizz.</p>

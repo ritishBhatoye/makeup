@@ -340,9 +340,9 @@ export const AboutMeSection: React.FC = () => {
             <div className="flex flex-col gap-2">
               <h3 className="text-2xl font-semibold text-[#6b5c4c] flex">Get different award my achievement work</h3>
               <div className="flex flex-row space-x-4">
-                <img src="/path/to/award1.png" alt="Premium Quality" className="w-16 h-16 award-icon" />
-                <img src="/path/to/award2.png" alt="100% Guaranteed" className="w-16 h-16 award-icon" />
-                <img src="/path/to/award3.png" alt="Best Quality" className="w-16 h-16 award-icon" />
+                <Image src="/path/to/award1.png" alt="Premium Quality" className="w-16 h-16 award-icon" />
+                <Image src="/path/to/award2.png" alt="100% Guaranteed" className="w-16 h-16 award-icon" />
+                <Image src="/path/to/award3.png" alt="Best Quality" className="w-16 h-16 award-icon" />
               </div>
             </div>
             <motion.button 

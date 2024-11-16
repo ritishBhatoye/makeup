@@ -6,76 +6,8 @@ import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 import { Star } from 'lucide-react'
 import { gsap } from 'gsap'
-import Image, { StaticImageData } from 'next/image';
-
-import Person1 from "../../../public/images/image_1.jpg"
-import Person2 from "../../../public/images/image_2.jpg"
-import Person3 from "../../../public/images/image_3.jpg"
-import Person4 from "../../../public/images/image_4.jpg"
-import Person5 from "../../../public/images/image_5.jpg"
-import Person6 from "../../../public/images/image_6.jpg"
-
-
-interface Review {
-  id: number
-  name: string
-  location: string
-  rating: number
-  image: StaticImageData
-  content:string
-}
-
-const reviews: Review[] = [
-  {
-    id: 1,
-    name: "Fiore Itala",
-    location: "New York, USA",
-    content: "Justo nec ultrices dui sapien eget mi proin. At elementum eu facilisis sed odio morbi quis. Tortor condimentum lacinia quis vel eros donec ac odio.",
-    rating: 4,
-    image: Person1
-  },
-  {
-    id: 2,
-    name: "Sophia Chen",
-    location: "San Francisco, USA",
-    content: "Exceptional service and stunning results! The attention to detail is remarkable.",
-    rating: 5,
-    image: Person2
-  },
-  {
-    id: 3,
-    name: "Liam O'Connor",
-    location: "Dublin, Ireland",
-    content: "A truly transformative experience. The team's expertise is unmatched.",
-    rating: 5,
-    image: Person6
-  },
-
-  {
-    id: 18,
-    name: "Yuki Tanaka",
-    location: "Tokyo, Japan",
-    content: "Innovative techniques and a warm, welcoming atmosphere. Highly recommended!",
-    rating: 5,
-    image: Person3
-  },
-  {
-    id: 19,
-    name: "Isabella Rossi",
-    location: "Rome, Italy",
-    content: "Bellissimo! The artistry and skill of the makeup artists are truly impressive.",
-    rating: 4,
-    image: Person4
-  },
-  {
-    id: 20,
-    name: "Zara Ahmed",
-    location: "Dubai, UAE",
-    content: "Luxurious experience from start to finish. The results exceeded my expectations.",
-    rating: 5,
-    image: Person5
-  }
-]
+import { reviews } from '@/utils/aboutReviews'
+import Image from 'next/image'
 
 export function AboutReviews() {
   const [currentReview, setCurrentReview] = useState(0)
@@ -102,7 +34,7 @@ export function AboutReviews() {
 
   return (
     <section className="py-16 bg-[#F8F3F0] overflow-hidden">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center " >
+      <div className="container mx-auto px-4 flex flex-col gap-2 md:flex-row items-center " >
         <div className="md:w-1/2 mb-8 md:mb-0">
           <h3 className="text-[#8B4E4E] uppercase text-sm font-semibold mb-2">Happy Clients</h3>
           <h2 ref={titleRef} className="text-5xl font-serif text-[#8B4E4E] mb-4">
