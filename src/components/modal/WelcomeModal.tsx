@@ -65,7 +65,7 @@ export function WelcomeModal() {
               transition={{ repeat: Infinity, duration: 2 }}
             >
               <Image
-                src="/Logo.png"
+                src="/images/Logo.png"
                 alt="Loading Logo"
                 width={100}
                 height={100}
