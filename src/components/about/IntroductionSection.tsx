@@ -240,7 +240,7 @@ export const AboutMeSection: React.FC = () => {
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
 
   const springProps = useReactSpring({
-    from: { opacity: 0, transform: 'translateY(50px)' },
+    from: { opacity: 1, transform: 'translateY(9px)' },
     to: { opacity: 1, transform: 'translateY(0px)' },
     config: { duration: 1000 },
   });
@@ -253,7 +253,7 @@ export const AboutMeSection: React.FC = () => {
   useEffect(() => {
     if (sectionRef.current && imageRef.current && textRef.current && whyILoveRef.current) {
       gsap.from(imageRef.current, {
-        x: -100,
+        x: -10,
         duration: 1,
         ease: 'power3.out',
         scrollTrigger: {
@@ -265,7 +265,7 @@ export const AboutMeSection: React.FC = () => {
       });
 
       gsap.from(textRef.current, {
-        x: 100,
+        x: 10,
         duration: 1,
         ease: 'power3.out',
         scrollTrigger: {
@@ -301,16 +301,16 @@ export const AboutMeSection: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 px-4 md:px-8 lg:px-16 bg-[#f2ede8] overflow-hidden">
-      <motion.div className="max-w-7xl mx-auto" style={{ opacity, scale }}>
-        <div className="flex flex-col lg:flex-row items-center justify-between mb-24">
+    <section ref={sectionRef} className=" px-4 md:px-8 lg:px-16 bg-[#f2ede8] overflow-y-auto">
+      <motion.div className="max-w-7xl mx-auto "  style={{ opacity, scale }}>
+        <div className="flex flex-col lg:flex-row items-center justify-between  ">
           <motion.div 
             ref={imageRef}
             className="w-full lg:w-1/2 mb-12 lg:mb-0"
           >
             <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-2xl">
               <Image
-                src="/path/to/komal-image.jpg"
+                src="/images/image_1.jpg"
                 alt="Komal - Professional Makeup Artist"
                 layout="fill"
                 objectFit="cover"
@@ -331,15 +331,15 @@ export const AboutMeSection: React.FC = () => {
           </motion.div>
           <motion.div 
             ref={textRef}
-            className="w-full lg:w-1/2 lg:pl-16"
+            className="w-full lg:w-1/2  flex flex-col gap-10"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[#6b5c4c] mb-6">ABOUT MY STORY</h2>
-            <animated.p style={springProps} className="text-lg text-[#6b5c4c] mb-6 leading-relaxed">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#6b5c4c]">ABOUT MY STORY</h2>
+            <animated.p style={springProps} className="text-lg text-[#6b5c4c] ">
               Hi, I'm Komal, a professional makeup artist based in Montreal, Canada. Makeup is both my passion and my profession. I specialize in transforming looks and boosting confidence through the power of makeup. My goal is to help you feel your most beautiful, empowered, and camera-ready.
             </animated.p>
-            <div className="mb-8">
-              <h3 className="text-2xl font-semibold text-[#6b5c4c] mb-4">Get different award my achievement work</h3>
-              <div className="flex space-x-4">
+            <div className="flex flex-col gap-2">
+              <h3 className="text-2xl font-semibold text-[#6b5c4c] flex">Get different award my achievement work</h3>
+              <div className="flex flex-row space-x-4">
                 <img src="/path/to/award1.png" alt="Premium Quality" className="w-16 h-16 award-icon" />
                 <img src="/path/to/award2.png" alt="100% Guaranteed" className="w-16 h-16 award-icon" />
                 <img src="/path/to/award3.png" alt="Best Quality" className="w-16 h-16 award-icon" />
@@ -359,7 +359,7 @@ export const AboutMeSection: React.FC = () => {
           ref={whyILoveRef}
           className="text-center"
           style={{
-            opacity: whyILoveSpring.opacity,
+            // opacity: whyILoveSpring.opacity,
             transform: whyILoveSpring.y.to(y => `translateY(${y}px)`)
           }}
         >
@@ -376,21 +376,21 @@ export const AboutMeSection: React.FC = () => {
             </svg>
           </div>
           <motion.div
-            className="flex justify-center space-x-6"
-            initial={{ opacity: 0, y: 20 }}
+            className="flex flex-col lg:flex-row  gap-2 justify-center "
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
             {['Passion', 'Creativity', 'Transformation'].map((item, index) => (
               <motion.div
                 key={item}
-                className="bg-white p-6 rounded-lg shadow-lg"
+                className="bg-white p-6 rounded-lg shadow-lg flex flex-col "
                 whileHover={{ y: -5, boxShadow: "0 10px 20px rgba(107, 92, 76, 0.2)" }}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 * index }}
               >
-                <h3 className="text-xl font-semibold text-[#6b5c4c] mb-2">{item}</h3>
+                <h3 className="text-xl font-semibold text-[#6b5c4c] ">{item}</h3>
                 <p className="text-[#6b5c4c]">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </motion.div>
             ))}

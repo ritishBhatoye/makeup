@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { Menu, X } from "lucide-react";
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-// import { animated, useSpring } from 'react-spring';
 import Logo from '../../public/images/hero/LOGO.png';
 
 const navItems = [
