@@ -92,7 +92,7 @@ export default function Header() {
         <div className='flex justify-between items-center'>
           <div className='flex items-center flex-shrink-0 transition-transform duration-300 hover:scale-105'>
             <Image 
-              src={Logo} 
+              src="/images/Logo.png" 
               alt="MakeupArtistry_Kor Logo" 
               width={80} 
               height={80} 

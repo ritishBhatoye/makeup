@@ -6,7 +6,7 @@ export function AboutUs() {
     <section className="py-16 bg-[#f2ede8]">
       <div className="container mx-auto px-4 md:px-8 lg:px-16">
         <div className="flex flex-col lg:flex-row gap-8 items-center max-w-7xl mx-auto">
-          <div className="w-full lg:w-1/2 overflow-hidden rounded-lg">
+          <div className="w-fuall lg:w-1/2 overflow-hidden rounded-lg">
             <div className="relative aspect-[4/3]">
               <Image
                 src="/images/image_7.jpg"

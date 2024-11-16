@@ -8,10 +8,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="text-center md:text-left">
             <div className="flex items-center mb-6 justify-center md:justify-start">
-              <Image src="/path-to-logo.svg" alt="Sheena Logo" width={36} height={36} />
-              <span className="ml-2 font-bold text-xl">Sheena</span>
+              <Image 
+               priority  
+              src="/images/Logo.png" alt="MakeupArtistry_Kor Logo" width={100} height={100} />
+              <span className="ml-2 font-bold text-xl">MakeupArtistry_Kor</span>
             </div>
-            <p className="text-sm mb-6">Elevate your style with Sheena. Discover timeless elegance and modern fashion.</p>
+            <p className="text-sm mb-6">Elevate your style with MakeupArtistry_Kor. Discover timeless elegance and modern fashion.</p>
             <div className="flex space-x-4 text-lg justify-center md:justify-start">
               {['Fb', 'In', 'Tw'].map((social) => (
                 <Link key={social} href="#" className="hover:text-[#6b5c4c]/80 transition-colors">
@@ -43,7 +45,7 @@ const Footer = () => {
         
         <div className="mt-12 pt-8 border-t border-[#6b5c4c]/20 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm mb-4 md:mb-0 text-center md:text-left">
-            © 2024 Sheena. All Rights Reserved.
+            © 2024 MakeupArtistry_Kor. All Rights Reserved.
           </p>
           <div className="flex space-x-4 text-sm">
             <Link href="#" className="hover:text-[#6b5c4c]/80 transition-colors">Privacy Policy</Link>

@@ -23,12 +23,12 @@ const services = [
   {
     title: "Full Glam Makeup",
     description: "Go all out with our full glam makeup for a show-stopping appearance.",
-    image: "/images/full-glam-makeup.jpg"
+    image: "/images/image_5.jpg"
   },
   {
     title: "Bridal Makeup",
     description: "Look breathtaking on your special day with our professional bridal makeup.",
-    image: "/images/bridal-makeup.jpg"
+    image: "/images/image_6.jpg"
   }
 ];
 
@@ -38,7 +38,7 @@ const ServiceWelcome: React.FC = () => {
 
   useEffect(() => {
     const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768); // Adjust breakpoint as needed
+      setIsMobile(window.innerWidth < 768); 
     };
 
     checkIsMobile();

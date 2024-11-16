@@ -46,7 +46,7 @@ export const IntroductionSection: React.FC = () => {
           >
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
               <Image
-                src="/images/image_1.jpg"
+                src="/images/image_2.jpg"
                 alt="Hairstylist working on client"
 
                 layout="fill"
