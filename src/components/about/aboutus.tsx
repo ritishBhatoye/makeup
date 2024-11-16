@@ -3,19 +3,20 @@ import Image from 'next/image';
 
 export function AboutUs() {
   return (
-    <section className="py-16 bg-[#f2ede8] ">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row gap-8 items-center">
-          <div className="w-full lg:w-1/2">
-            <Image
-              src="/images/image_7.jpg"
-              alt="Woman applying skincare product"
-              width={600}
-              height={600}
-              className="rounded-lg object-cover w-full h-auto"
-            />
+    <section className="py-16 bg-[#f2ede8]">
+      <div className="container mx-auto px-4 md:px-8 lg:px-16">
+        <div className="flex flex-col lg:flex-row gap-8 items-center max-w-7xl mx-auto">
+          <div className="w-full lg:w-1/2 overflow-hidden rounded-lg">
+            <div className="relative aspect-[4/3]">
+              <Image
+                src="/images/image_7.jpg"
+                alt="Woman applying skincare product"
+                fill
+                className="object-cover rounded-lg transform hover:scale-105 transition-transform duration-300"
+              />
+            </div>
           </div>
-          <div className="w-full lg:w-1/2 space-y-6">
+          <div className="w-full lg:w-1/2 space-y-6 px-4">
             <h2 className="text-sm uppercase tracking-wide text-[#6b5c4c]">About Us</h2>
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#6b5c4c]">
               Innovative Skincare Products Exporter

@@ -61,15 +61,29 @@ export function WelcomeModal() {
             className="fixed inset-0 flex items-center justify-center bg-[#f2ede8]/80 backdrop-blur-sm z-50"
           >
             <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ repeat: Infinity, duration: 2 }}
+              animate={{ 
+                scale: [1, 1.2, 1],
+                rotateY: [0, 360],
+                rotateX: [0, 15, 0],
+              }}
+              transition={{ 
+                repeat: Infinity, 
+                duration: 3,
+                ease: "easeInOut"
+              }}
+              style={{
+                perspective: "1000px",
+                transformStyle: "preserve-3d"
+              }}
+              className="relative"
             >
+              <div className="absolute inset-0 blur-2xl bg-gradient-to-r from-stone-200/50 to-stone-400/50 rounded-full" />
               <Image
                 src="/images/Logo.png"
                 alt="Loading Logo"
                 width={100}
                 height={100}
-                className="object-contain"
+                className="object-contain relative drop-shadow-2xl"
                 priority
               />
             </motion.div>

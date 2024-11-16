@@ -3,8 +3,9 @@ import { AboutUs } from "@/components/about/aboutus";
 import { Unique } from "@/components/about/unique";
 import Numbers from "@/components/home/Numbers";
 import { AboutReviews } from "@/components/about/aboutReviews";
-import { AboutMeSection, IntroductionSection } from "@/components/about/IntroductionSection";
+import {  IntroductionSection } from "@/components/about/IntroductionSection";
 import Footer from "@/components/Footer";
+import { AboutMeSection } from "@/components/about/aboutMe";
 
 export default function About() {
   return (
@@ -13,7 +14,7 @@ export default function About() {
       <main className=" mx-auto py-8">
       <IntroductionSection />
       <AboutMeSection />
-      {/* <LetsConnectSection /> */}
+
         <AboutUs />
 
         <Numbers/>
