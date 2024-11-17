@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ServiceItem } from './serviceItem';
-import PartyMakeup from "../../../public/images/image_7.jpg"
-import BridalMakeup from "../../../public/images/image_8.jpg"
-import Eshoots from "../../../public/images/image_9.jpg"
-import FullGlam from "../../../public/images/image_10_women_with_hair_rollers.jpg"
-import FacialMakeup from "../../../public/images/Makeup1.jpg"
+import PartyMakeup from "../../../public/images/image_7.jpg";
+import BridalMakeup from "../../../public/images/image_8.jpg";
+import Eshoots from "../../../public/images/image_9.jpg";
+import FullGlam from "../../../public/images/image_10_women_with_hair_rollers.jpg";
+import FacialMakeup from "../../../public/images/Makeup1.jpg";
 
 
 const services = [

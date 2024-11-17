@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
-import HairStylist from "../../../public/images/image_2.jpg"
+import HairStylist from "../../../public/images/image_2.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
