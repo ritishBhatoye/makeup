@@ -81,8 +81,8 @@ export function WelcomeModal() {
               <Image
                 src="/images/Logo.png"
                 alt="Loading Logo"
-                width={100}
-                height={100}
+                width={600}
+                height={600}
                 className="object-contain relative drop-shadow-2xl"
                 priority
               />
