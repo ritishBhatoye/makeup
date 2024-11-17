@@ -42,7 +42,27 @@ const textVariants = {
 };
 
 function FloatingLeaves() {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const leaves = Array.from({ length: 8 }, (_, i) => i);
+
+  useEffect(() => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+
+    function handleResize() {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  if (!dimensions.width || !dimensions.height) return null;
   
   return (
     <div className="absolute inset-0 opacity-10 overflow-hidden">
@@ -56,8 +76,8 @@ function FloatingLeaves() {
             rotate: 0,
           }}
           animate={{
-            x: Math.random() * window.innerWidth,
-            y: window.innerHeight + 20,
+            x: Math.random() * dimensions.width,
+            y: dimensions.height + 20,
             rotate: 360,
           }}
           transition={{
