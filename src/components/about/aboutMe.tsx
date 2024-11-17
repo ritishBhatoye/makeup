@@ -79,7 +79,7 @@ export const AboutMeSection: React.FC = () => {
           >
             <div className="relative aspect-[3/4] w-full rounded-2xl shadow-2xl overflow-hidden">
               <Image
-                src="/images/image_1.jpg"
+                src="/images/image_6.jpg"
                 alt="Komal - Professional Makeup Artist"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
