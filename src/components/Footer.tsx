@@ -14,10 +14,20 @@ const Footer = () => {
               <span className="ml-2 font-bold text-xl">MakeupArtistry_Kor</span>
             </div>
             <p className="text-sm mb-6">Elevate your style with MakeupArtistry_Kor. Discover timeless elegance and modern fashion.</p>
-            <div className="flex space-x-4 text-lg justify-center md:justify-start">
-              {['Fb', 'In', 'Tw'].map((social) => (
-                <Link key={social} href="#" className="hover:text-[#6b5c4c]/80 transition-colors">
-                  {social}.
+            <div className="flex space-x-4 justify-center md:justify-start">
+              {[
+                { name: 'Facebook', src: '/images/social/facebook.png' },
+                { name: 'Instagram', src: '/images/social/instagram.png' },
+                { name: 'Twitter', src: '/images/social/twitterX.png' }
+              ].map((social) => (
+                <Link key={social.name} href="#" className="hover:opacity-80 transition-opacity">
+                  <Image 
+                    src={social.src}
+                    alt={`${social.name} icon`}
+                    width={24}
+                    height={24}
+                    className="w-6 h-6"
+                  />
                 </Link>
               ))}
             </div>
