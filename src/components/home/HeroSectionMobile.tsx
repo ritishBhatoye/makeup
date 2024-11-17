@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 
 interface HeroContent {
   subtitle: string;
@@ -42,6 +41,40 @@ const textVariants = {
   exit: { opacity: 0, y: -20 }
 };
 
+function FloatingLeaves() {
+  const leaves = Array.from({ length: 8 }, (_, i) => i);
+  
+  return (
+    <div className="absolute inset-0 opacity-10 overflow-hidden">
+      {leaves.map((i) => (
+        <motion.div
+          key={i}
+          className="absolute w-8 h-8 text-[#6b5c4c]"
+          initial={{
+            x: Math.random() * 100,
+            y: -20,
+            rotate: 0,
+          }}
+          animate={{
+            x: Math.random() * window.innerWidth,
+            y: window.innerHeight + 20,
+            rotate: 360,
+          }}
+          transition={{
+            duration: Math.random() * 10 + 15,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.75 12.5c-.162-.462-.457-.797-.916-1.027a5.583 5.583 0 0 1-3.249.994c-3.257 0-5.891-2.634-5.891-5.891c0-1.168.34-2.257.994-3.249C8.458 3.068 8.123 3.25 7.661 3.412C4.583 4.437 3.437 6.609 3.437 10.078c0 4.558 3.727 8.285 8.285 8.285c3.469 0 5.641-1.146 6.666-4.224c.162-.462.344-.797.344-1.256c0-.121-.121-.242-.242-.363c-.242-.121-.483-.121-.725 0z"/>
+          </svg>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
 export default function HeroSectionMobile() {
   const [contentIndex, setContentIndex] = useState(0);
 
@@ -54,17 +87,8 @@ export default function HeroSectionMobile() {
   }, []);
 
   return (
-    <section className="relative h-[80dvh] bg-[#FAF7F5] overflow-hidden md:hidden">
-    
-      <div className="absolute inset-0 opacity-10">
-        <Image
-          src="/images/leaf-pattern.png"
-          alt="Background pattern"
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
+    <section className="relative h-[70dvh] bg-[#FAF7F5] overflow-hidden md:hidden">
+      <FloatingLeaves />
 
       <div className="relative z-10 h-full flex flex-col justify-center px-6">
         <AnimatePresence mode="wait">
