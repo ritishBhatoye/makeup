@@ -23,7 +23,9 @@ export const ServiceItem: React.FC<ServiceItemProps> = ({ title, description, im
           alt={title}
           layout="fill"
           objectFit="cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="transition-transform duration-300 hover:scale-105"
+          priority={delay === 0}
         />
       </div>
       <div className="p-4 sm:p-6">

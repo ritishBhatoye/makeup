@@ -1,4 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+/** @type {import('next/config').NextConfig} */
+const nextConfig = {
+  images: {
+    domains: [], // Add your image domains here if loading from external URLs
+    unoptimized: false,
+  },
+}
 
-export default nextConfig;
+export default nextConfig
