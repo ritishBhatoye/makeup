@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import { useSpring as useReactSpring, animated } from 'react-spring';
 import anime from 'animejs';
+import Komal from "../../../public/images/image_1.jpg"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -79,7 +80,7 @@ export const AboutMeSection: React.FC = () => {
           >
             <div className="relative aspect-[3/4] w-full rounded-2xl shadow-2xl overflow-hidden">
               <Image
-                src="/images/image_6.jpg"
+                src={Komal}
                 alt="Komal - Professional Makeup Artist"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"

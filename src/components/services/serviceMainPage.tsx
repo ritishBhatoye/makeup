@@ -1,9 +1,10 @@
 'use client'
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
-// import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
+import Roller from "../../../public/images/image_10_women_with_hair_rollers.jpg"
+import WomenWithHair from "../../../public/images/image_4.jpg"
 
 const ServiceMainPage: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -30,7 +31,7 @@ const ServiceMainPage: React.FC = () => {
         >
           <div className="relative aspect-[3/4] w-full max-w-sm sm:max-w-md mx-auto">
             <Image
-              src="/images/image_4.jpg"
+              src={WomenWithHair}
               alt="Women with hair rollers"
               layout="fill"
               objectFit="cover"
@@ -39,7 +40,7 @@ const ServiceMainPage: React.FC = () => {
           </div>
           <div className="relative aspect-[4/3] w-full max-w-xs sm:max-w-sm mx-auto -mt-16 sm:-mt-24 ml-auto">
             <Image
-              src="/images/image_10_women_with_hair_rollers.jpg"
+              src={Roller}
               alt="Hairstylist working on client"
               layout="fill"
               objectFit="cover"
@@ -49,17 +50,26 @@ const ServiceMainPage: React.FC = () => {
         </motion.div>
         
         <motion.div 
-          className="w-full lg:w-1/2 lg:pl-12 mt-8 lg:mt-0"
+          className="w-full lg:w-1/2 lg:pl-12 mt-8 lg:mt-0 flex flex-col gap-10" 
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h3 className="text-lg sm:text-xl font-semibold mb-2 gsap-animate">Services</h3>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 gsap-animate">WHY CHOOSE OUR SERVICES</h2>
-          <p className="text-base sm:text-lg mb-6 sm:mb-8 gsap-animate">
+          <h3 className="text-xl sm:text-xl font-semibold mb-2 gsap-animate">Services</h3>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 gsap-animate">WHY CHOOSE OUR SERVICES</h2>
+          <p className="text-lg sm:text-lg mb-6 sm:mb-8 gsap-animate">
             Experience the pinnacle of beauty and care with our expert services. 
             Our skilled professionals use cutting-edge techniques and premium products 
             to deliver stunning results tailored to your unique style and preferences.
+          </p>
+          <ul className="list-disc pl-5 text-lg sm:text-xl mb-6 sm:mb-8 gsap-animate">
+            <li>Personalized consultations to understand your needs.</li>
+            <li>Wide range of services including hair styling, skincare, and more.</li>
+            <li>Use of eco-friendly and sustainable products.</li>
+            <li>Relaxing and rejuvenating environment.</li>
+          </ul>
+          <p className="text-lg sm:text-xl mb-6 sm:mb-8 gsap-animate">
+            "I have never felt more beautiful and confident. The team truly knows how to bring out the best in you!" - A satisfied client
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-8 gsap-animate">
             <div className="flex items-center">

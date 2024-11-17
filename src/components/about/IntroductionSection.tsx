@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
+import HairStylist from "../../../public/images/image_2.jpg"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,7 +47,7 @@ export const IntroductionSection: React.FC = () => {
           >
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
               <Image
-                src="/images/image_2.jpg"
+                src={HairStylist}
                 alt="Hairstylist working on client"
 
                 layout="fill"
