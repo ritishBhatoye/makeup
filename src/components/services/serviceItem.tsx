@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 interface ServiceItemProps {
   title: string;
   description: string;
-  image: string;
+  image:StaticImageData;
   delay: number;
 }
 

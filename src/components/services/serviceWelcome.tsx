@@ -3,32 +3,38 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ServiceItem } from './serviceItem';
+import PartyMakeup from "../../../public/images/image_7.jpg"
+import BridalMakeup from "../../../public/images/image_8.jpg"
+import Eshoots from "../../../public/images/image_9.jpg"
+import FullGlam from "../../../public/images/image_10_women_with_hair_rollers.jpg"
+import FacialMakeup from "../../../public/images/Makeup1.jpg"
+
 
 const services = [
   {
     title: "Party Makeup",
     description: "Get ready to shine at any event with our stunning party makeup looks.",
-    image: "/images/image_2.jpg"
+    image: PartyMakeup
   },
   {
     title: "Pre-Wedding Makeup",
     description: "Look radiant for all your pre-wedding events with our expert makeup services.",
-    image: "/images/image_4.jpg"
+    image: BridalMakeup
   },
   {
     title: "E-Shoots",
     description: "Capture your best self with makeup tailored for engagement and photo shoots.",
-    image: "/images/image_1.jpg"
+    image: Eshoots
   },
   {
     title: "Full Glam Makeup",
     description: "Go all out with our full glam makeup for a show-stopping appearance.",
-    image: "/images/image_5.jpg"
+    image: FullGlam
   },
   {
     title: "Bridal Makeup",
     description: "Look breathtaking on your special day with our professional bridal makeup.",
-    image: "/images/image_6.jpg"
+    image: FacialMakeup
   }
 ];
 
