@@ -8,7 +8,6 @@ import { FaFacebookF, FaTwitter, FaPinterestP } from 'react-icons/fa';
 import { blogPosts } from "@/utils/blogData";
 
 
-// Generate additional 997 blog posts
 for (let i = 4; i <= 1000; i++) {
   const categories = ['Skincare', 'Makeup', 'Hair Care', 'Nail Care', 'Body Care', 'Fragrance', 'Men\'s Grooming', 'Natural Beauty', 'Anti-Aging', 'Sun Care'];
   const category = categories[Math.floor(Math.random() * categories.length)];

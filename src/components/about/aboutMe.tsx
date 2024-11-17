@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import { useSpring as useReactSpring, animated } from 'react-spring';
 import anime from 'animejs';
-import Komal from "../../../public/images/image_1.jpg"
+import Komal from "../../../public/images/image_1.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
